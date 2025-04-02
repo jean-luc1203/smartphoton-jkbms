@@ -1,6 +1,6 @@
 {
-  "name": "Smartphoton HA Add-ons",
+  "name": "Smartphoton JK-BMS HAOS Add-ons",
   "udev": true,
-  "url": "https://github.com/NOLAK22/smartphoton-dev/",
+  "url": "https://github.com/jean-luc1203/smartphoton-jkbms/",
   "maintainer": "Smartphoton"
 }

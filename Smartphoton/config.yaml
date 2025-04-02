@@ -1,11 +1,11 @@
 ---
 name: Smartphoton
-version: 1.1.5-r0
+version: 1.0
 slug: smartphoton
-description: Smartphoton
-url: https://domosimple.eu/
+description: Smartphoton JK-BMS via RS485
+url: https://domosimple.eu/forum
 ingress: false
-#ingress_port: 1890
+#ingress_port: 1870
 ingress_stream: false
 panel_icon: mdi:sitemap
 init: false
@@ -17,9 +17,9 @@ arch:
   - armv7
   - i386
 ports:
-  1890/tcp: 1890
+  1870/tcp: 1870
 ports_description:
-  1890/tcp: Web interface
+  1870/tcp: Web interface
 hassio_api: true
 hassio_role: manager
 homeassistant_api: true
@@ -32,105 +32,22 @@ map:
   - share:rw
   - ssl
 options:
-  onduleur: 
-  usbonduleur: false
-  elfinonduleur: false
-  elfinonduleurip: Adresse ip
-  elfinonduleurport: 7777
-  nameEntities:
-    nameOnduleur: "Onduleur"
-    namePV: "PV Puissance (Watt)"
-    namePV2: "PV2 Puissance (Watt)"
-    nameBatt_charge: "Batt Charge (Watt)"
-    nameBatt_batt_decharge: "Batt deharge (Watt)"
-    nameBatt_batt_chargedecharge: "Batt Charge et Decharge (watt)"
-    nameConso_maison: "Conso Maison (Watt)"
-    nameGridTension: "Grid Tension (Volt)"
-    nameBattTensiont: "Batterie Voltage (Volt)"
-    namePvTensiont: "PV Voltage (Volt)"
-    namePv2Tensiont: "PV2 Voltage (Volt)"
-    nameOnduleurTension: "Onduleur Tension (Volt)"
-    nameDataFrequency: "Data Frequency (Hz)"
-    nameOnduleurFrequency: "Onduleur-Frequency (Hz)"
-    namePvIntensite: "Pv Intensite (Amp)"
-    namePv2Intensite: "Pv2 Intensite (Amp)"
-    nameBattChargeIntensite: "Batt Charge Intensite (Amp)"
-    nameBattDechargeIntensite: "Batt Decharge Intensite (Amp)"
-    nameBattCapacite: "Batterie Capacité"
-    nameMode: "Mode Solaire"
-    nameTemp: "Temperature (°)"
-    nameParam01: "Paramètre 01"
-    nameParam02: "Paramètre 02"
-    nameParam05: "Paramètre 05"
-    nameParam11: "Paramètre 11"
-    nameParam12: "Paramètre 12"
-    nameParam13: "Paramètre 13"
-    nameParam16: "Paramètre 16"
-    nameParam27: "Paramètre 27"
-    nameParam29: "Paramètre 29"
-  batterie: 
-  battTension: 
-  usbbatterie: false
-  elfinbatterie: false
-  elfinbatterieip: Adresse ip
-  elfinbatterieport: 7777
-  mqtt:
-    mqttadresse: ""
-    mqttport: ""
-    mqttuser: ""
-    mqttpass: ""
+  Broker_IP: localhost
+  Broker_Password: 12345678
+  Broker_Port: 1883
+  Broker_User: administrateur
+  Number_of_BMS: 1
+  USB_serial_port: /dev/ttyUSB0
   ssl: false
   certfile: fullchain.pem
   keyfile: privkey.pem
 schema:
-  #onduleur: list(voltronic|easun)
-  onduleur: list(voltronic)
-  usbonduleur: str
-  elfinonduleur: bool
-  elfinonduleurip: str?
-  elfinonduleurport: port?
-  nameEntities:
-    nameOnduleur: str
-    namePV: str
-    namePV2: str
-    nameBatt_charge: str
-    nameBatt_batt_decharge: str
-    nameBatt_batt_chargedecharge: str
-    nameConso_maison: str
-    nameGridTension: str
-    nameBattTensiont: str
-    namePvTensiont: str
-    namePv2Tensiont: str
-    nameOnduleurTension: str
-    nameDataFrequency: str
-    nameOnduleurFrequency: str
-    namePvIntensite: str
-    namePv2Intensite: str
-    nameBattChargeIntensite: str
-    nameBattDechargeIntensite: str
-    nameBattCapacite: str
-    nameMode: str
-    nameTemp: str
-    nameParam01: str
-    nameParam02: str
-    nameParam05: str
-    nameParam11: str
-    nameParam12: str
-    nameParam13: str
-    nameParam16: str
-    nameParam27: str
-    nameParam29: str
-  batterie: list(aucune|pylontech)?
-  battTension: list(12|24|48)?
-  usbbatterie: str
-  elfinbatterie: bool
-  elfinbatterieip: str?
-  elfinbatterieport: port?
-  mqtt:
-    mqttadresse: str?
-    mqttport: port?
-    mqttuser: str?
-    mqttpass: password?
+  Broker_IP: str
+  Broker_Password: password?
+  Broker_Port: port?
+  Broker_User: str
+  Number_of_BMS: str
+  USB_serial_port: list(/dev/ttyUSB0|/dev/ttyUSB1)
   log_level: list(trace|debug|info|notice|warning|error|fatal)?
   ssl: bool
   certfile: str

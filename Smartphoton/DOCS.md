@@ -1,212 +1,37 @@
-# Smartphoton Add-on Home Assistant basé sur node red
+# Smartphoton JK-BMS Add-on Home Assistant based on Node Red
 
-Smartphoton est un addon de gestion d'onduleurs et de batteries
+Smartphoton JK-BMS is a JKong BMS management addon.
 
-**Onduleur**
-* [x] Voltronic (wks, Axpert ...)
+**BMS**
+* [x] JK_PB1A16S15P - JK_PB2A16S15P - Other ?
 
-**Batterie**
-* [x] Pylontech
 
-**Tension Batterie**
-* [x] 48 volt
-* [x] 24 volt (non testé)
-* [ ] 12 volt
 
 ---
 ## Installation
 ---
 
-L'installation de ce module complémentaire est assez simple et ne diffère pas en
-comparaison avec l’installation de tout autre module complémentaire Home Assistant.
+Installing this add-on is fairly straightforward and no different from installing
+any other Home Assistant add-on.
 
-1. Ajouter le dépot "https://github.com/jean-luc1203/smartphoton-ha-addon/" dans la boutique des modules complémentaires
-1. Cliquez sur le bouton "Installer" pour installer le module complémentaire..
-1. Configurer votre installation dans le menu configuration.
-1. Démarrez le module complémentaire "Smartphoton".
-1. Vérifiez les journaux de "Smartphoton" pour voir si tout s'est bien passé.
+1. Add the “https://github.com/jean-luc1203/smartphoton-ha-addon/” repository to the add-on store
+1. Click on the “Install” button to install the add-on...
+1. Configure your installation in the configuration menu.
+1. Start the “Smartphoton” add-on.
+1. Check “Smartphoton” logs to see if all went well.
 
 ---
 ## Configuration
 ---
 
-**Note**: _N'oubliez pas de redémarrer le module complémentaire lorsque la configuration est modifiée.._
+**Note**: _Don't forget to restart the add-on when the configuration is modified._
 
 Example add-on configuration:
-
-```yaml
-onduleur: voltronic
-usbonduleur: /dev/serial/by-id/usb-Prolific_Technology_Inc._ATEN_USB_to_Serial_Bridge_EQDPb115818-if00-port0
-elfinonduleur: false
-elfinonduleurip: Adresse ip
-elfinonduleurport: 7777
-nameEntities:
-  nameOnduleur: Onduleur
-  namePV: PV Puissance (Watt)
-  nameBatt_charge: Batt Charge (Watt)
-  nameBatt_batt_decharge: Batt deharge (Watt)
-  nameBatt_batt_chargedecharge: Batt Charge et Decharge (watt)
-  nameConso_maison: Conso Maison (Watt)
-  nameGridTension: Grid Tension (Volt)
-  nameBattTensiont: Batterie Voltage (Volt)
-  namePvTensiont: PV Voltage (Volt)
-  nameOnduleurTension: Onduleur Tension (Volt)
-  nameDataFrequency: Data Frequency (Hz)
-  nameOnduleurFrequency: Onduleur-Frequency (Hz)
-  namePvIntensite: Pv Intensite (Amp)
-  nameBattChargeIntensite: Batt Charge Intensite (Amp)
-  nameBattDechargeIntensite: Batt Decharge Intensite (Amp)
-  nameBattCapacite: Batterie Capacité
-  nameMode: Mode Solaire
-  nameTemp: Temperature (°)
-  nameParam01: Paramètre 01
-  nameParam02: Paramètre 02
-  nameParam05: Paramètre 05
-  nameParam11: Paramètre 11
-  nameParam12: Paramètre 12
-  nameParam13: Paramètre 13
-  nameParam16: Paramètre 16
-  nameParam27: Paramètre 27
-  nameParam29: Paramètre 29
-batterie: pylontech
-battTension: "48"
-usbbatterie: false
-elfinbatterie: false
-elfinbatterieip: Adresse ip
-elfinbatterieport: 7777
-mqtt:
-  mqttadresse: 192.168.1.200
-  mqttport: "1883"
-  mqttuser: test
-  mqttpass: test
-ssl: false
-certfile: fullchain.pem
-keyfile: privkey.pem
-```
-
-**Note**: _Ceci n'est qu'un exemple, ne le copiez pas et ne le collez pas ! voir les détails de configuration en dessous_
-
----
-## Onduleur
----  
-
-### Option: `Choix de l'onduleur ou onduleur`
-Choisir le type d'onduleur (d'autres seront ajoutés par la suite).
-   
-  
-### Option: `Choix port onduleur ou usbonduleur`
-Choisir du port usb de d'onduleur. ("false" pour ne pas l'utiliser)
-
-### Option: `Activer le elfin ou elfinonduleur`
-Si vous utilisé un elfin : vrai ou faux
-
-### Option: `Elfin`
-**Activer le elfin ou elfinonduleur** Si vous utilisé un elfin : vrai ou faux
-
-**Adresse elfin onduleur ou elfinonduleurip** Si vrai adresse ip du elfin de votre onduleur 
-
-**Port elfin onduleur ou elfinonduleurip** Si vrai port du elfin de votre onduleur 
-
-### Option: `Nom des entités ou nameEntities`
-Permet de personnalisé les noms des entités onduleur.
-
----
-## Batterie
----
-### Option: `Choix de la Batterie ou batterie`
-Choisir le type de batterie (d'autres seront ajoutés par la suite).
-
-### Option: `Tension batteries ou battTension`
-Tension de vos batteries (Les options 12 et 24 ne sont pas entièrement fonctionnel)
-
-### Option: `Choix port usb de la batterie ou usbbatterie`
-Choisir du port usb de la batterie ("false" pour ne pas l'utiliser)
-
-### Option: `Elfin`
-**Activer le elfin ou elfinbatterie** Si vous utilisé un elfin : vrai ou faux
-
-**Adresse elfin onduleur ou elfinbatterieip** Si vrai adresse ip du elfin de votre batterie
-
-**Port elfin onduleur ou elfinbatterieport** Si vrai port du elfin de votre batterie
-
----
-## MQTT (obligatoire)
----
-Vous devez avoir un broker mqtt (vous pouvez l'intaller via la boutique des module complémentaire. [Addon Mosquitto broker][addon-mqtt])
-Il sera ensuite indispenssable d'ajouter intégration mqtt (voir doc mqtt)
-
-
-### Option: 
-**mqttadresse** Adresse de votre broker
-
-**mqttport** port broker
-
-**mqttuser** utilisateur de connexion 
-
-**mqttpass** mot de passe de connexion
-
----
-## Autres options
----
-### Option: `Log Level`
-The `log_level` option controls the level of log output by the addon and can
-be changed to be more or less verbose, which might be useful when you are
-dealing with an unknown issue. Possible values are:
-
-- `trace`: Show every detail, like all called internal functions.
-- `debug`: Shows detailed debug information.
-- `info`: Normal (usually) interesting events.
-- `warning`: Exceptional occurrences that are not errors.
-- `error`: Runtime errors that do not require immediate action.
-- `fatal`: Something went terribly wrong. Add-on becomes unusable.
-
-Please note that each level automatically includes log messages from a
-more severe level, e.g., `debug` also shows `info` messages. By default,
-the `log_level` is set to `info`, which is the recommended setting unless
-you are troubleshooting.
-
-### Option: `ssl` (non testé)
-
-Enables/Disables SSL (HTTPS) on the web interface.
-Set it `true` to enable it, `false` otherwise.
-
-**Note**: _The SSL settings only apply to direct access and has no effect
-on the Ingress service._
-
-### Option: `certfile`
-
-The certificate file to use for SSL.
-
-**Note**: _The file MUST be stored in `/ssl/`, which is the default_
-
-### Option: `keyfile`
-
-The private key file to use for SSL.
-
-**Note**: _The file MUST be stored in `/ssl/`, which is the default_
-
-
-## Changelog & Releases
----
-
-`MAJOR.MINOR.PATCH`
-
-- `MAJOR`: Incompatible or major changes.
-- `MINOR`: Backwards-compatible new features and enhancements.
-- `PATCH`: Backwards-compatible bugfixes and package updates.
-
-
-## Support
----
-- [Github][depot-mqtt]
-- [Site][site]
-- [Forum][forum]
-- [Documentations Github][documentation]
 
 
 ## Authors & contributors
 ---
-Smartphoton, Jean-luc / Alexis / Romain / Khamel / Samuel
+Smartphoton, Jean-luc Martinelli
 
 The original setup of this repository is by [Franck Nijhof][frenck].
 
